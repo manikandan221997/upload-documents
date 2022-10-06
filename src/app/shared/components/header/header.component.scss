@@ -1,0 +1,27 @@
+@import './../../../../styles.scss';
+
+.headerContainer {
+  background-color: $primary-bg-color;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logoCls {
+    color: $secondary-bg-color;
+    margin-left: 16px;
+    font-family: 'interstate-bold';
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .linkContainer {
+    color: $secondary-color;
+    display: flex;
+
+    .linkCls{
+      margin-right: 16px;
+      cursor: pointer;
+    }
+  }
+}

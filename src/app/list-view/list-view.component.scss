@@ -1,0 +1,82 @@
+@import './../../styles.scss';
+
+.mainContainer {
+  min-height: 80%;
+
+  .headingCls{
+    text-align: center;
+  }
+
+  .cardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 83.9vh;
+
+    mat-card {
+      flex-direction: column;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-bg-color;
+      color: $secondary-color;
+      margin: 24px 0px 64px 0px;
+
+      .accordianCls{
+        margin-bottom: 16px;
+      }
+
+      mat-accordion {
+        width: 100%;
+
+        .successUploadCls {
+          background-color: $primary-bg-color;
+          color: $secondary-color;
+        }
+
+        .successUploadbuttonCls {
+          background-color: $secondary-bg-color;
+          color: $primary-color;
+        }
+
+        .noteBoldCls {
+          font-weight: bold;
+          padding-right: 4px;
+        }
+
+        .listCls{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 2px solid $primary-bg-color;
+          // color: $primary-color;
+          height: 32px;
+          padding: 8px;
+          margin-bottom: 4px;
+  
+          .fileUploadButton {
+            .fileInput {
+              display: none;
+            }
+          }
+  
+          .fileNameTextCls{
+            padding-right: 8px;
+          }
+  
+          .uploadIconCls {
+            color: $secondary-bg-color;
+            cursor: pointer;
+          }
+        }
+
+        .buttonCls {
+          display: flex;
+          justify-content: center;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}

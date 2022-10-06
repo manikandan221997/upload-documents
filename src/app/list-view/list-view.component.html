@@ -1,0 +1,61 @@
+<div class="mainContainer">
+    <div class="cardContainer">
+      <mat-card>
+        <h1 class="headingCls">Document Submission Portal</h1>
+        <h2 class="secondaryHeadingCls">List View</h2>
+        <mat-accordion class="accordianCls">
+          <mat-expansion-panel (opened)="addrPanelOpened()" (closed)="addrPanelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="textPrimaryColor">
+                Address
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section class="textPrimaryColor">
+              <p><span class="noteBoldCls">Note:</span>Upload any one of the documents or all the documents</p>
+              <div class="listCls" *ngFor="let data of addrDocList; let index = index" [ngClass]="!data.isEdited && data.file ? 'successUploadCls' : ''">
+                <span>{{data.displayValue}}</span>
+                <button *ngIf="!data.isEdited && !data.file" mat-raised-button class="fileUploadButton" (click)="fileInput.click()">
+                  <input #fileInput class="fileInput" type="file" (change)="handleFileInputAddr($event, index)"/>
+                  <mat-icon matSuffix class="uploadIconCls">file_upload</mat-icon>
+                </button>
+                <button mat-raised-button *ngIf="data.isEdited || data.file" [ngClass]="!data.isEdited && data.file ? 'successUploadbuttonCls' : ''">
+                  <span class="fileNameTextCls">{{data.file.name}}</span>
+                  <mat-icon (click)="deleteFileAddr(index)">delete</mat-icon>
+                </button>
+              </div>
+              <div class="buttonCls">
+                <button [disabled]="!addrSubmitEnable" (click)="addrUploadSubmit()" mat-raised-button>Upload</button>
+              </div>
+            </section>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="eduPanelOpened()" (closed)="eduPanelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="textPrimaryColor">
+                Education
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section class="textPrimaryColor">
+              <p><span class="noteBoldCls">Note:</span>Upload any one of the documents or all the documents</p>
+              <div class="listCls" *ngFor="let data of eduDocList; let index = index" [ngClass]="!data.isEdited && data.file ? 'successUploadCls' : ''">
+                <span>{{data.displayValue}}</span>
+                <button *ngIf="!data.isEdited && !data.file" mat-raised-button class="fileUploadButton" (click)="fileInput.click()">
+                  <input #fileInput class="fileInput" type="file" (change)="handleFileInputEdu($event, index)"/>
+                  <mat-icon matSuffix class="uploadIconCls">file_upload</mat-icon>
+                </button>
+                <button mat-raised-button *ngIf="data.isEdited || data.file">
+                  <span class="fileNameTextCls">{{data.file.name}}</span>
+                  <mat-icon (click)="deleteFileEdu(index)">delete</mat-icon>
+                </button>
+              </div>
+              <div class="buttonCls">
+                <button [disabled]="!eduSubmitEnable" (click)="eduUploadSubmit()" mat-raised-button>Upload</button>
+              </div>
+            </section>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card>
+    </div>
+  </div>
+  

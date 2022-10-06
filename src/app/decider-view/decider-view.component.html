@@ -1,0 +1,131 @@
+<div class="mainContainer">
+    <div class="cardContainer">
+      <mat-card>
+        <h1 class="headingCls">Document Submission Portal</h1>
+        <h2 class="secondaryHeadingCls">Decider View</h2>
+        <mat-accordion class="accordianCls">
+          <mat-expansion-panel (opened)="addrPanelOpened()" (closed)="addrPanelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="textPrimaryColor">
+                Address
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section class="textPrimaryColor">
+              <p>Documents to upload</p>
+              <ul>
+                <li *ngFor="let data of addrDocList">{{data.displayValue}}</li>
+              </ul>
+              <mat-radio-group [(ngModel)]="addrRadioValue">
+                <mat-radio-button value="all">Upload all the documents</mat-radio-button>
+                <mat-radio-button value="one">Upload any one document</mat-radio-button>
+              </mat-radio-group>
+              <div *ngIf="addrRadioValue == ''">
+                <p>select any one option</p>
+              </div>
+              <div class="allViewCls" *ngIf="addrRadioValue == 'all'">
+                <div class="listCls" *ngFor="let data of addrDocList; let index = index" [ngClass]="!data.isEdited && data.file ? 'successUploadSelectCls' : ''">
+                  <span>{{data.displayValue}}</span>
+                  <button *ngIf="!data.isEdited && !data.file" mat-raised-button class="fileUploadButton" (click)="fileInput.click()">
+                    <input #fileInput class="fileInput" type="file" (change)="handleFileInputAddr($event, index)"/>
+                    <mat-icon matSuffix class="uploadIconCls">file_upload</mat-icon>
+                  </button>
+                  <button mat-raised-button *ngIf="data.isEdited || data.file" [ngClass]="!data.isEdited && data.file ? 'successUploadbuttonSelectCls' : ''">
+                    <span class="fileNameTextCls">{{data.file.name}}</span>
+                    <mat-icon (click)="deleteFileAddr(index)">delete</mat-icon>
+                  </button>
+                </div>
+                <div class="buttonCls">
+                  <button [disabled]="!addrSubmitEnable" (click)="addrUploadSubmit()" mat-raised-button>Upload</button>
+                </div>
+              </div>
+              <div class="singleViewCls" *ngIf="addrRadioValue == 'one'">
+                <div class="listCls" [ngClass]="!addrDocValue.isEdited && addrDocValue.file ? 'successUploadSelectCls' : ''">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select the document to upload</mat-label>
+                    <mat-select  [(ngModel)]="addrSelectValue" [disabled]="addrDocValue.isEdited">
+                      <mat-option *ngFor="let data of addrDocList" [value]="data.name">
+                        {{data.displayValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button *ngIf="!addrDocValue.isEdited && !addrDocValue.file" [disabled]="!addrSelectValue" mat-raised-button class="fileUploadButton" (click)="fileInput.click()">
+                    <input #fileInput class="fileInput" type="file" (change)="handleFileInputAddr($event, 0, 'one')"/>
+                    <mat-icon matSuffix class="uploadIconCls">file_upload</mat-icon>
+                  </button>
+                  <button mat-raised-button *ngIf="addrDocValue.isEdited || addrDocValue.file" [ngClass]="!addrDocValue.isEdited && addrDocValue.file ? 'successUploadbuttonSelectCls' : ''">
+                    <span class="fileNameTextCls">{{addrDocValue.file.name}}</span>
+                    <mat-icon (click)="deleteFileAddr(0, 'one')">delete</mat-icon>
+                  </button>
+                </div>
+                <div class="buttonCls">
+                  <button [disabled]="!addrSubmitEnable" (click)="addrUploadSubmit('one')" mat-raised-button>Upload</button>
+                </div>
+              </div>
+            </section>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="eduPanelOpened()" (closed)="eduPanelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="textPrimaryColor">
+                Education
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section class="textPrimaryColor">
+              <p>Documents to upload</p>
+              <ul>
+                <li *ngFor="let data of eduDocList">{{data.displayValue}}</li>
+              </ul>
+              <mat-radio-group [(ngModel)]="eduRadioValue">
+                <mat-radio-button value="all">Upload all the documents</mat-radio-button>
+                <mat-radio-button value="one">Upload any one document</mat-radio-button>
+              </mat-radio-group>
+              <div *ngIf="eduRadioValue == ''">
+                <p>select any one option</p>
+              </div>
+              <div class="allViewCls" *ngIf="eduRadioValue == 'all'">
+                <div class="listCls" *ngFor="let data of eduDocList; let index = index" [ngClass]="!data.isEdited && data.file ? 'successUploadSelectCls' : ''">
+                  <span>{{data.displayValue}}</span>
+                  <button *ngIf="!data.isEdited && !data.file" mat-raised-button class="fileUploadButton" (click)="fileInput.click()">
+                    <input #fileInput class="fileInput" type="file" (change)="handleFileInputEdu($event, index)"/>
+                    <mat-icon matSuffix class="uploadIconCls">file_upload</mat-icon>
+                  </button>
+                  <button mat-raised-button *ngIf="data.isEdited || data.file" [ngClass]="!data.isEdited && data.file ? 'successUploadbuttonSelectCls' : ''">
+                    <span class="fileNameTextCls">{{data.file.name}}</span>
+                    <mat-icon (click)="deleteFileEdu(index)">delete</mat-icon>
+                  </button>
+                </div>
+                <div class="buttonCls">
+                  <button [disabled]="!eduSubmitEnable" (click)="eduUploadSubmit()" mat-raised-button>Upload</button>
+                </div>
+              </div>
+              <div class="singleViewCls" *ngIf="eduRadioValue == 'one'">
+                <div class="listCls" [ngClass]="!eduDocValue.isEdited && eduDocValue.file ? 'successUploadSelectCls' : ''">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select the document to upload</mat-label>
+                    <mat-select  [(ngModel)]="eduSelectValue" [disabled]="eduDocValue.isEdited">
+                      <mat-option *ngFor="let data of eduDocList" [value]="data.name">
+                        {{data.displayValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button *ngIf="!eduDocValue.isEdited && !eduDocValue.file" [disabled]="!eduSelectValue" mat-raised-button class="fileUploadButton" (click)="fileInput.click()">
+                    <input #fileInput class="fileInput" type="file" (change)="handleFileInputEdu($event, 0, 'one')"/>
+                    <mat-icon matSuffix class="uploadIconCls">file_upload</mat-icon>
+                  </button>
+                  <button mat-raised-button *ngIf="eduDocValue.isEdited || eduDocValue.file" [ngClass]="!eduDocValue.isEdited && eduDocValue.file ? 'successUploadbuttonSelectCls' : ''">
+                    <span class="fileNameTextCls">{{eduDocValue.file.name}}</span>
+                    <mat-icon (click)="deleteFileEdu(0, 'one')">delete</mat-icon>
+                  </button>
+                </div>
+                <div class="buttonCls">
+                  <button [disabled]="!eduSubmitEnable" (click)="eduUploadSubmit('one')" mat-raised-button>Upload</button>
+                </div>
+              </div>
+            </section>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card>
+    </div>
+  </div>
+  

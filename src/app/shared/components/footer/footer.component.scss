@@ -1,0 +1,12 @@
+@import './../../../../styles.scss';
+
+.footerTextCls {
+  font-family: 'interstate-light';
+  color: $secondary-color;
+  font-size: 12px;
+
+  mat-icon {
+    font-size: 13px;
+    width: 12px;
+  }
+}
