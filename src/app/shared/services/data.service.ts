@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
+  isUploadEnable: boolean = false;
+  uploadedAddrList: any[] = [];
+
   documentList: any[] = [
     {name:'aadhaar', displayValue: 'Aadhaar (UID)', docType: 'address'},
     {name:'passport', displayValue: 'Passport', docType: 'address'},

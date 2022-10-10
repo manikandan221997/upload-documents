@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DragDropViewComponent } from './drag-drop-view/drag-drop-view.component';
+import { DragDropDirective } from './shared/directive/drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     DeciderViewComponent,
     ListViewComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DragDropViewComponent,
+    DragDropDirective
   ],
   imports: [
     BrowserModule,

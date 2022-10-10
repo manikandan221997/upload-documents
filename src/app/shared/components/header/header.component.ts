@@ -14,12 +14,7 @@ export class HeaderComponent implements OnInit {
   }
 
   routeTo(type: any) {
-    if (type == 'listView') {
-      this.router.navigate(['/listView']);
-    } else if (type == 'deciderView') {
-      this.router.navigate(['/deciderView']);
-    }
-
+    this.router.navigate([type]);
   }
 
 }

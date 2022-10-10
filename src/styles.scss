@@ -92,6 +92,7 @@ app-footer {
   mat-form-field {
     height: 52px;
     width: 50%;
+    border: 2px solid $primary-bg-color;
 
     .mat-select-value {
       .mat-select-value-text {

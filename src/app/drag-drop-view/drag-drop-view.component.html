@@ -1,0 +1,51 @@
+<div class="mainContainer">
+  <div class="cardContainer">
+    <mat-card>
+      <h1 class="headingCls">Document Submission Portal</h1>
+      <h2 class="secondaryHeadingCls">Drag Drop View</h2>
+      <mat-accordion class="accordianCls">
+        <mat-expansion-panel (opened)="addrPanelOpened()" (closed)="addrPanelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="textPrimaryColor">
+              Address
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="textPrimaryColor">
+            <div class="singleViewCls">
+              <div class="listCls">
+                <mat-form-field appearance="fill">
+                  <mat-label>Select the document to upload</mat-label>
+                  <mat-select  [(ngModel)]="addrSelectValue" (selectionChange)="onSelectChange()">
+                    <mat-option value="">Select</mat-option>
+                    <mat-option value="all">Select All</mat-option>
+                    <mat-option *ngFor="let data of addrDocList" [value]="data.name">
+                      {{data.displayValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div appDragDrop *ngIf="dataService.uploadedAddrList.length <= 0" class="dropZone" [ngClass]="dataService.isUploadEnable ? '' : 'disableDropZone'" (fileEmitter)="updateList($event)">
+                <input [disabled]="!dataService.isUploadEnable" type="file" id="fileUploadRefAddr" class="fileInputCls" multiple (change)="fileHandler($event)"/>
+                <h3>Drag and Drop</h3>
+                <h3>or</h3>
+                <label for="fileUploadRefAddr" class="browseFileCls" [ngClass]="dataService.isUploadEnable ? '' : 'disableBrowseFileCls'">Browse files</label>
+              </div>
+              <div *ngIf="dataService.uploadedAddrList.length > 0" class="buttonCls">
+                <button *ngIf="dataService.uploadedAddrList.length > 1" (click)="addrUploadSubmit()" mat-raised-button>Upload All</button>
+                <button *ngIf="dataService.uploadedAddrList.length > 1" (click)="deleteFileAddr(0, 'all')" mat-raised-button>Delete All</button>
+                <button *ngIf="dataService.uploadedAddrList.length == 1" (click)="addrUploadSubmit()" mat-raised-button>Upload</button>
+              </div>
+              <div class="listCls filesCls" *ngFor="let data of dataService.uploadedAddrList; let index = index">
+                <span class="fileNameTextCls">{{data.name}}</span>
+                <button mat-raised-button>
+                  <mat-icon (click)="deleteFileAddr(index)">delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+  </div>
+
+</div>

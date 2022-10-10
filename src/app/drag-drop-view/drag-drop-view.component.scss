@@ -1,0 +1,125 @@
+@import './../../styles.scss';
+
+.mainContainer {
+  min-height: 80%;
+
+  .headingCls{
+    text-align: center;
+  }
+
+  .cardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 83.9vh;
+
+    mat-card {
+      flex-direction: column;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-bg-color;
+      color: $secondary-color;
+      margin: 24px 0px 64px 0px;
+
+      .accordianCls{
+        margin-bottom: 16px;
+      }
+
+      mat-accordion {
+        width: 100%;
+
+        // .successUploadbuttonSelectCls {
+        //   background-color: $secondary-bg-color;
+        //   color: $primary-color;
+        // }
+
+        // .noteBoldCls {
+        //   font-weight: bold;
+        //   padding-right: 4px;
+        // }
+
+        // .allViewCls {
+        //   margin-top: 16px;
+        // }
+
+        .listCls{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // color: $primary-color;
+          height: 32px;
+          padding: 8px;
+          margin-bottom: 4px;
+
+          .fileUploadButton {
+            .fileInput {
+              display: none;
+            }
+          }
+
+          .fileNameTextCls{
+            padding-right: 8px;
+          }
+
+          .uploadIconCls {
+            color: $secondary-bg-color;
+            cursor: pointer;
+          }
+        }
+
+        .filesCls {
+          border: 2px solid $primary-bg-color;
+          margin: 16px 0 0 0;
+          justify-content: space-between !important;
+        }
+
+        .dropZone {
+          border: 2px dashed $primary-bg-color;
+          margin-top: 16px;
+          text-align: center;
+          padding: 12px;
+
+          .fileInputCls{
+            opacity: 0;
+            position: absolute;
+          }
+
+          h3 {
+            margin: 0 0 8px 0 !important;
+          }
+
+          .browseFileCls{
+            background-color: $primary-bg-color;
+            color: $secondary-bg-color;
+            padding: 6px;
+            border-radius: 8%;
+            cursor: pointer;
+          }
+        }
+
+        .disableDropZone {
+          border: 2px dashed gray;
+           h3 {
+            color: gray;
+           }
+           .disableBrowseFileCls {
+            background-color: rgba(0,0,0,.12);
+            color: rgba(0,0,0,.26);
+           }
+        }
+
+        .buttonCls {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 16px;
+
+          .mat-raised-button{
+            margin-left: 16px;
+          }
+        }
+      }
+    }
+  }
+}
